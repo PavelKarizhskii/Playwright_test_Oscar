@@ -1,16 +1,27 @@
-# This is a sample Python script.
+import pytest
+import time
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+import playwright
+from playwright.sync_api import Playwright, sync_playwright, expect
+import pytest_playwright
+from playwright.sync_api import Playwright, sync_playwright, expect
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+from playwright.sync_api import Playwright, sync_playwright, expect
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+# @pytest.fixture(scope="function")
+# def browsers():
+#     print("\nstart browser for test..")
+#     yield browsers
+#     print("\nquit browser..")
+#     browsers.quit()
+
+
+
+
+@pytest.fixture(scope="function")
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
