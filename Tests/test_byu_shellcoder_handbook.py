@@ -22,9 +22,11 @@ def test_byu_shellcoder_handbook(page):
     link = "http://selenium1py.pythonanywhere.com/"
     main_page = MainPage(page, link)
     main_page.open()
-    time.sleep(10)
     main_page.search("Python")
     searh_page = Searching_results_page(page, page.url)
     searh_page.add_product_by_number()
     searh_page.ckeck_add_Python_Learning()
+    time.sleep(5)
+    searh_page.go_to_cart()
+    time.sleep(5)
 
